@@ -14,7 +14,7 @@ graph TD
     EuropePMCAPI[(EuropePMC API)]-->AnnotationsOf###-->CombineInputs
     AOP-Wiki-->CombineInputs
     AOP-WikiRDF[(AOP-Wiki RDF)]-->CombineInputs
-    CellDesigner-->PhysiologicalMap
+    Literature-->|CellDesigner|PhysiologicalMap
 ```
 
 ```mermaid
