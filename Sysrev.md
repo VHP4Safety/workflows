@@ -5,6 +5,6 @@ graph TD
   Sysrev.licences-->Hogeschool.Utrecht
   Sysrev.licences-->RIVM
   Sysrev.com-->Sysrev.VHP4Safety.Sysrev.Org
-  Hogeschool.Utrecht-->Admin : "Has root access"
+  Hogeschool.Utrecht--HasAccess-->Admin 
   
 ```
