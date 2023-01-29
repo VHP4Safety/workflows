@@ -1,10 +1,12 @@
 ```mermaid
 graph TD
   Sysrev.com-->Sysrev.licences
-  Sysrev.licences-->Utrecht.University
-  Sysrev.licences-->Hogeschool.Utrecht
-  Sysrev.licences-->RIVM
-  Sysrev.com-->Sysrev.VHP4Safety.Sysrev.Org
-  Hogeschool.Utrecht--HasAccess-->Admin 
-  
+  Sysrev.licences--HasLicence-->Utrecht.University
+  Sysrev.licences--HasLicence-->Hogeschool.Utrecht
+  Sysrev.licences--HasLicence-->RIVM
+  Sysrev.com-->VHP4Safety.Sysrev.Org
+  M.Teunis--HasRootAccess-->VHP4Safety.Sysrev.Org
+  SecondAdmin--HasRootAccess-->VHP4Safety.Sysrev.Org
+  RIVM--HasRootAccess-->VHP4Safety.Sysrev.Org
+  Hogeschool.Utrecht--IsOwner-->VHP4Safety.Sysrev.Org
 ```
