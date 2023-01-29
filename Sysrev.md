@@ -1,4 +1,4 @@
-``mermaid
+```mermaid
 graph TD
   'Sysrev.com'-->'Sysrev.licences'
   DataRepository-->Parameters
