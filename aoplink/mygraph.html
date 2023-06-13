@@ -1,0 +1,105 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "lightgreen", "font": "20px arial black", "id": "KE 715", "label": "KE 715", "shape": "circle", "size": 50, "title": "Activation, Constitutive androstane receptor"}, {"color": "lightgreen", "font": "20px arial black", "id": "KE 786", "label": "KE 786", "shape": "circle", "size": 50, "title": "Increase, Cytotoxicity (hepatocytes)"}, {"color": "lightgreen", "font": "20px arial black", "id": "KE 785", "label": "KE 785", "shape": "circle", "size": 50, "title": "Activation, Androgen receptor"}, {"color": "lightgreen", "font": "20px arial black", "id": "KE 227", "label": "KE 227", "shape": "circle", "size": 50, "title": "Activation, PPAR\u03b1"}, {"color": "lightgreen", "font": "20px arial black", "id": "KE 724", "label": "KE 724", "shape": "circle", "size": 50, "title": "Inhibition, Pyruvate dehydrogenase kinase (PDK) enzyme"}, {"color": "khaki", "font": "20px arial black", "id": "KE 716", "label": "KE 716", "shape": "circle", "size": 50, "title": "Increase, cell proliferation (hepatocytes)"}, {"color": "khaki", "font": "20px arial black", "id": "KE 209", "label": "KE 209", "shape": "circle", "size": 50, "title": "Peptide Oxidation"}, {"color": "khaki", "font": "20px arial black", "id": "KE 768", "label": "KE 768", "shape": "circle", "size": 50, "title": "Increase, Cytotoxicity"}, {"color": "khaki", "font": "20px arial black", "id": "KE 769", "label": "KE 769", "shape": "circle", "size": 50, "title": "Increase, Oxidative metabolism"}, {"color": "khaki", "font": "20px arial black", "id": "KE 726", "label": "KE 726", "shape": "circle", "size": 50, "title": "Increased, Induction of pyruvate dehydrogenase (PDH)"}, {"color": "khaki", "font": "20px arial black", "id": "KE 1214", "label": "KE 1214", "shape": "circle", "size": 50, "title": "Altered gene expression specific to CAR activation, Hepatocytes"}, {"color": "khaki", "font": "20px arial black", "id": "KE 774", "label": "KE 774", "shape": "circle", "size": 50, "title": "Increase, Preneoplastic foci (hepatocytes)"}, {"color": "khaki", "font": "20px arial black", "id": "KE 1171", "label": "KE 1171", "shape": "circle", "size": 50, "title": "Increase, Clonal Expansion of Altered Hepatic Foci"}, {"color": "khaki", "font": "20px arial black", "id": "KE 1170", "label": "KE 1170", "shape": "circle", "size": 50, "title": "Increase, Phenotypic enzyme activity"}, {"color": "khaki", "font": "20px arial black", "id": "KE 787", "label": "KE 787", "shape": "circle", "size": 50, "title": "Increase, Regenerative cell proliferation (hepatocytes)"}, {"color": "salmon", "font": "20px arial black", "id": "KE 719", "label": "KE 719", "shape": "circle", "size": 50, "title": "Increase, hepatocellular adenomas and carcinomas"}]);
+        edges = new vis.DataSet([{"arrows": "to", "color": "black", "from": "KE 227", "label": "KER 2252", "to": "KE 716", "width": 2}, {"arrows": "to", "color": "black", "from": "KE 785", "label": "KER 787", "to": "KE 716", "width": 2}, {"arrows": "to", "color": "black", "from": "KE 1214", "label": "KER 1269", "to": "KE 716", "width": 2}, {"arrows": "to", "color": "black", "from": "KE 768", "label": "KER 766", "to": "KE 719", "width": 2}, {"arrows": "to", "color": "black", "from": "KE 715", "label": "KER 1268", "to": "KE 1214", "width": 2}, {"arrows": "to", "color": "black", "from": "KE 769", "label": "KER 763", "to": "KE 209", "width": 2}, {"arrows": "to", "color": "black", "from": "KE 716", "label": "KER 773", "to": "KE 774", "width": 2}, {"arrows": "to", "color": "black", "from": "KE 227", "label": "KER 2253", "to": "KE 719", "width": 2}, {"arrows": "to", "color": "black", "from": "KE 774", "label": "KER 774", "to": "KE 719", "width": 2}, {"arrows": "to", "color": "black", "from": "KE 787", "label": "KER 789", "to": "KE 774", "width": 2}, {"arrows": "to", "color": "black", "from": "KE 209", "label": "KER 765", "to": "KE 768", "width": 2}, {"arrows": "to", "color": "black", "from": "KE 716", "label": "KER 2254", "to": "KE 719", "width": 2}, {"arrows": "to", "color": "black", "from": "KE 1171", "label": "KER 1232", "to": "KE 719", "width": 2}, {"arrows": "to", "color": "black", "from": "KE 1170", "label": "KER 1230", "to": "KE 716", "width": 2}, {"arrows": "to", "color": "black", "from": "KE 786", "label": "KER 788", "to": "KE 787", "width": 2}, {"arrows": "to", "color": "black", "from": "KE 726", "label": "KER 762", "to": "KE 769", "width": 2}, {"arrows": "to", "color": "black", "from": "KE 716", "label": "KER 1239", "to": "KE 1171", "width": 2}, {"arrows": "to", "color": "black", "from": "KE 227", "label": "KER 1229", "to": "KE 1170", "width": 2}, {"arrows": "to", "color": "black", "from": "KE 724", "label": "KER 716", "to": "KE 726", "width": 2}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
